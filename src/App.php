@@ -26,6 +26,11 @@ class App
         return $this->router;
     }
 
+    public function getContainer()
+    {
+        return $this->container;
+    }
+    
     public function run() : void
     {
         $this->dispatcher   = $dispatcher ?? new Dispatcher($this->router->getData()); 
