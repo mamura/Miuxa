@@ -41,8 +41,8 @@ class App
                 $vars       = $dispatch[2];
                 
                 list($class, $method) = explode("/", $handler, 2);
-                $this->container->get($class);
-                call_user_func_array(new $class, $vars);
+                call_user_func_array($this->container->get($class), $vars)->send();
+
             break;
 
             case 2:
