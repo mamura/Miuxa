@@ -157,7 +157,6 @@ class Response implements ResponseInterface
 
     public function __toString()
     {
-        var_dump($this->getHeaders());
         return $this->send();
     }
 }

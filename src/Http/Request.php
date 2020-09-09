@@ -6,25 +6,67 @@ use Psr\Http\Message\UriInterface;
 
 class Request
 {
-    use MessageTrait;
+    //use MessageTrait;
 
-    private $method = 'GET';
-    private $uri;
+    protected $params = [];
+    protected $method;
+    protected $pathInfo;
+    protected $requestUri;
+    protected $baseUrl;
+    protected $basePath;
 
-    public function __construct($uri = null, string $method, $body = 'php://temp', array $headers = [])
+    public function __construct()
     {
-        if($method !== null) {
-            $this->method = $this->setMethod($method);
+        $this->method   = $_SERVER['REQUEST_METHOD'];
+        $this->pathInfo = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $dirname        = dirname($_SERVER['SCRIPT_NAME']);
+        
+        if($dirname != '/') {
+            $this->pathInfo = str_replace($dirname, '', $this->pathInfo);
         }
-        $this->uri = $this->createUri($uri);
-        $this->setHeaders($headers);
 
-        if(!$this->hasHeader('Host') && $this->uri->getHost()) {
-            $this->headerNames['host']  = 'Host';
-            $this->headers['Host']      = [$this->getHostFromUri()];
+        if (empty($this->pathInfo)) {
+            $this->pathInfo = '/';
+        } elseif (!$this->pathInfo != '/') {
+            $this->pathInfo = '/' . $this->pathInfo . '/';
         }
+        
+        $this->pathInfo = preg_replace('/\/+/', '/', $this->pathInfo);
+        
+        switch ($this->method) {
+            case 'GET':
+                $this->params = $_GET;
+                break;
+
+            case 'POST':
+                $this->params = $_POST;
+
+                if (!empty($_GET)) {
+                    $this->params = array_merge($_GET, $this->params);
+                }
+                break;
+        }
+        
     }
 
+    public function url()
+    {
+        //$page
+    }
+
+    public function bindParams(array $parameters)
+    {
+        $this->params = array_merge($this->params, $parameters);
+
+        return $this;
+    }
+
+    public function getParam(string $name, $default = null)
+    {
+        $result = $this->params[$name] ?? $default;
+        return is_string($result) ? trim($result) : $result;
+    }
+    
     public function getRequestTarget(){}
 
 
@@ -41,6 +83,29 @@ class Request
 
     
     public function withUri(UriInterface $uri, $preserveHost = false){}
+
+    /** Message Interface */
+    public function getProtocolVersion(){}
+
+    public function withProtocolVersion($version){}
+
+    public function getHeaders(){}
+
+    public function hasHeader($name){}
+
+    public function getHeader($name){}
+
+    public function getHeaderLine($name){}
+
+    public function withHeader($name, $value){}
+
+    public function withAddedHeader($name, $value){}
+
+    public function withoutHeader($name){}
+
+    public function getBody(){}
+
+    //public function withBody(StreamInterface $body){}
 
     /**
      * Set a valid HTTP method
@@ -84,4 +149,6 @@ class Request
             'Invalid URI provided; must be null, a string, or a Psr\Http\Message\UriInterface instance'
         );
     }
+
+    
 }

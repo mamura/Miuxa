@@ -14,7 +14,7 @@ class HomeService
 
     public function handle()
     { 
-        $this->payload->setData('<html><body><h1>testesfsdfsdfsdfdsf</h1></body></html>');
+        $this->payload->setData('<h1>Miuxa</h1>');
         return $this->payload;
     }
 }
