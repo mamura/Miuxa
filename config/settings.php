@@ -14,7 +14,7 @@ $settings['public'] = $settings['public'] . '/public';
 // Database
 $settings['db'] = [
     'driver'    => 'mysql',
-    'host'      => 'localhost',
+    'host'      => 'mysql',
     'username'  => 'root',
     'password'  => 'root',
     'database'  => 'miuxa',
