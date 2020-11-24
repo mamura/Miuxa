@@ -11,8 +11,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Miuxa\\":"src",
-            "App\\":"app"
+            "miuxa\\":"src",
+            "app\\":"app"
         }
     },
     "require": {

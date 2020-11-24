@@ -1,5 +1,5 @@
 <?php
-namespace Miuxa\Http;
+namespace miuxa\Http;
 
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -45,7 +45,7 @@ class Response implements ResponseInterface
     public function withHeader($name, $value) : MessageInterface
     {
         $new = clone $this;
-        if($new->hasHeader($name)) {
+        if ($new->hasHeader($name)) {
             unset($new->headers[$new->headerNames[strtolower($value)]]);
         }
 
@@ -73,7 +73,7 @@ class Response implements ResponseInterface
     {
         $new = clone $this;
 
-        if($this->hasHeader($name)) {
+        if ($this->hasHeader($name)) {
             $original = $this->headerNames[strtolower($name)];
             unset($new->headers[$original], $new->headerNames[strtolower($name)]);
         }
@@ -157,7 +157,6 @@ class Response implements ResponseInterface
 
     public function __toString()
     {
-        var_dump($this->getHeaders());
         return $this->send();
     }
 }

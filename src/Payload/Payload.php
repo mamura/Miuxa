@@ -1,5 +1,5 @@
 <?php
-namespace Miuxa\Payload;
+namespace miuxa\Payload;
 
 class Payload implements PayloadInterface
 {

@@ -1,7 +1,7 @@
 <?php
 
 use DI\ContainerBuilder;
-use Miuxa\App;
+use miuxa\App;
 
 require __DIR__ . '/../vendor/autoload.php';
 

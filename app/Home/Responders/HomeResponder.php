@@ -1,6 +1,9 @@
 <?php
-namespace App\Home\Responders;
+namespace app\Home\Responders;
 
-use Miuxa\ViewResponder;
+use miuxa\ViewResponder;
 
-class HomeResponder extends ViewResponder {}
+class HomeResponder extends ViewResponder
+{
+    //
+}

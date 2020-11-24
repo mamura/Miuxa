@@ -1,5 +1,5 @@
 <?php
-namespace Miuxa\Route;
+namespace miuxa\Route;
 
 class Route
 {

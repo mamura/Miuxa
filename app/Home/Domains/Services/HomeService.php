@@ -1,7 +1,7 @@
 <?php
 namespace App\Home\Domains\Services;
 
-use Miuxa\Payload\Payload;
+use miuxa\Payload\Payload;
 
 class HomeService
 {
@@ -13,8 +13,8 @@ class HomeService
     }
 
     public function handle()
-    { 
-        $this->payload->setData('<html><body><h1>testesfsdfsdfsdfdsf</h1></body></html>');
+    {
+        $this->payload->setData('<html><body><h1>Home Miuxa</h1></body></html>');
         return $this->payload;
     }
 }

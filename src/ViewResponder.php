@@ -1,8 +1,8 @@
 <?php
-namespace Miuxa;
+namespace miuxa;
 
-use Miuxa\Http\Response;
-use Miuxa\Payload\PayloadInterface;
+use miuxa\Http\Response;
+use miuxa\Payload\PayloadInterface;
 
 class ViewResponder
 {
@@ -15,7 +15,7 @@ class ViewResponder
 
     public function respond(PayloadInterface $payload)
     {
-        foreach($payload->getHeaders() as $headerName => $headerValue) {
+        foreach ($payload->getHeaders() as $headerName => $headerValue) {
             $this->response->withHeader($headerName, $headerValue);
         }
 

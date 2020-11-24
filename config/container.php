@@ -1,17 +1,31 @@
 <?php
+
+use FastRoute\DataGenerator\GroupCountBased;
+use FastRoute\RouteParser\Std;
 use Psr\Container\ContainerInterface;
-use Miuxa\App;
-use Miuxa\Route\Router;
-use FastRoute\DataGenerator;
-use FastRoute\RouteParser;
+use miuxa\App;
+use miuxa\Route\Router;
+use miuxa\Http\Request;
+use miuxa\Http\Response;
 
 return [
-    'settings' => function() {
+    'settings' => function () {
         return require __DIR__ . '/settings.php';
     },
 
-    App::class => function(ContainerInterface $container, Router $router) {
-        return new App($container);
+    Request::class => function () {
+        return new Request();
     },
 
+    Response::class => function () {
+        return new Response();
+    },
+
+    Router::class => function (ContainerInterface $container) {
+        return new Router(new Std(), new GroupCountBased, $container->get(Request::class));
+    },
+
+    App::class => function (ContainerInterface $container) {
+        return new App($container);
+    },
 ];

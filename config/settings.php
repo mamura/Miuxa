@@ -1,6 +1,6 @@
 <?php
-error_reporting(0);
-ini_set('display_errors', '0');
+error_reporting(6143);
+ini_set('display_errors', '1');
 
 date_default_timezone_set('America/Sao_Paulo');
 

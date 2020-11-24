@@ -1,8 +1,8 @@
 <?php
 namespace App\Home\Action;
 
-use App\Home\Domains\Services\HomeService as Service;
-use App\Home\Responders\HomeResponder as Responder;
+use app\Home\Domains\Services\HomeService as Service;
+use app\Home\Responders\HomeResponder as Responder;
 
 class HomeAction
 {
@@ -17,7 +17,6 @@ class HomeAction
 
     public function __invoke()
     {
-        //var_dump($this->service->handle());
         return $this->response->respond($this->service->handle());
     }
 }
