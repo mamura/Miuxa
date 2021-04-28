@@ -1,7 +1,7 @@
 {
     "name": "mamura/miuxa",
     "description": "A simple composer application",
-    "type": "project",
+    "type": "library",
     "license": "GPL",
     "authors": [
         {
@@ -11,14 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "miuxa\\":"src",
-            "app\\":"app"
+            "mamura\\miuxa\\":"src"
         }
     },
     "require": {
         "php-di/php-di": "^6.2",
         "nikic/fast-route": "^1.3",
-        "phpunit/phpunit": "^9.3",
         "psr/http-factory": "^1.0"
     }
     
